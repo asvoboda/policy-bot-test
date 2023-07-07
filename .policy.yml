@@ -1,0 +1,23 @@
+policy:
+  approval:
+  - or:
+    - a
+    - b
+
+approval_rules:
+
+- name: a
+  requires:
+    count: 1
+    users: ["asvoboda"]
+
+- name: b
+  if:
+    only_changed_files:
+      paths:
+      - 'test/foo/bar'
+  options:
+    invalidate_on_push: true
+  requires:
+    count: 1
+    users: ["asvoboda"]
